@@ -33,6 +33,22 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Crawlio',
+  operatingSystem: 'macOS 14+',
+  applicationCategory: 'UtilitiesApplication',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  description:
+    'A modern macOS website downloader. Crawl, download, and package entire websites for offline browsing.',
+  softwareVersion: '1.0.0',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,9 +56,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} bg-bg text-text-primary antialiased`}
       >
+        <a
+          href="#hero"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-accent-cyan focus:px-4 focus:py-2 focus:text-bg"
+        >
+          Skip to content
+        </a>
         {children}
       </body>
     </html>
