@@ -1,9 +1,31 @@
+import Nav from '@/components/Nav'
+import Hero from '@/components/sections/Hero'
+import WhatItDoes from '@/components/sections/WhatItDoes'
+import Engine from '@/components/sections/Engine'
+import Parsers from '@/components/sections/Parsers'
+import Localization from '@/components/sections/Localization'
+import Export from '@/components/sections/Export'
+import Security from '@/components/sections/Security'
+import DownloadCTA from '@/components/sections/DownloadCTA'
+import Footer from '@/components/Footer'
+import ScrollProgress from '@/components/ScrollProgress'
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-bg">
-      <div className="flex min-h-screen items-center justify-center">
-        <h1 className="text-5xl font-bold text-text-primary">Crawlio</h1>
-      </div>
-    </main>
+    <>
+      <ScrollProgress />
+      <Nav />
+      <main>
+        <Hero />
+        <WhatItDoes />
+        <Engine />
+        <Parsers />
+        <Localization />
+        <Export />
+        <Security />
+        <DownloadCTA />
+      </main>
+      <Footer />
+    </>
   )
 }
