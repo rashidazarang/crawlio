@@ -1,6 +1,7 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
+import ParticleField from './ParticleField'
 
 export default function SceneRoot() {
   return (
@@ -19,6 +20,7 @@ export default function SceneRoot() {
       <ambientLight intensity={0.15} />
       <directionalLight intensity={0.4} position={[5, 5, 5]} />
       <pointLight color="#a5f3fc" intensity={0.3} position={[0, 2, 4]} />
+      <ParticleField />
     </Canvas>
   )
 }
