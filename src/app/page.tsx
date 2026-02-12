@@ -9,13 +9,15 @@ import Security from '@/components/sections/Security'
 import DownloadCTA from '@/components/sections/DownloadCTA'
 import Footer from '@/components/Footer'
 import ScrollProgress from '@/components/ScrollProgress'
+import Scene3D from '@/components/three/Scene3D'
 
 export default function Home() {
   return (
     <>
+      <Scene3D />
       <ScrollProgress />
       <Nav />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <WhatItDoes />
         <Engine />
