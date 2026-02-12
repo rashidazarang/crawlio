@@ -10,7 +10,7 @@ void main() {
     pos += normalize(pos) * uScroll * -0.5;
 
     vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-    gl_PointSize = aSize * (200.0 / -mvPosition.z);
+    gl_PointSize = aSize * (80.0 / -mvPosition.z);
     gl_Position = projectionMatrix * mvPosition;
     vOpacity = aOpacity;
 }

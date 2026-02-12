@@ -13,7 +13,7 @@ interface ParticleFieldProps {
   count?: number
 }
 
-export default function ParticleField({ count = 4000 }: ParticleFieldProps) {
+export default function ParticleField({ count = 500 }: ParticleFieldProps) {
   const meshRef = useRef<THREE.Points>(null)
   const scroll = useScrollProgress()
   const scrollRef = useRef(0)

@@ -26,7 +26,7 @@ export default function Hero() {
         </GlowText>
       </div>
 
-      <p className="mb-10 max-w-lg text-lg text-text-secondary md:text-xl">
+      <p className="mb-12 max-w-lg text-xl text-text-secondary md:text-2xl">
         Download any website. Browse it offline.
       </p>
 

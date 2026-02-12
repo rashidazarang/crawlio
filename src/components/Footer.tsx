@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 py-12">
-      <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 px-6 md:flex-row">
+    <footer className="border-t border-white/[0.08] py-12">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-center justify-between gap-4 px-6 sm:px-8 md:flex-row md:px-12">
         <div className="flex items-center gap-2 text-sm font-medium text-text-primary">
           <svg width="18" height="18" viewBox="0 0 64 64" fill="none" aria-hidden="true">
             <path d="M48 12a28 28 0 1 0 0 40" stroke="#a5f3fc" strokeWidth="4" strokeLinecap="round" fill="none"/>

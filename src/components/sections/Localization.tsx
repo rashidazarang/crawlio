@@ -12,9 +12,9 @@ const after = `<!-- After -->
 
 export default function Localization() {
   return (
-    <SectionWrapper id="localization">
+    <SectionWrapper id="localization" band>
       <RevealOnScroll>
-        <h2 className="mb-6 text-3xl font-bold md:text-4xl">Every link rewritten</h2>
+        <h2 className="mb-6 text-3xl tracking-tight font-bold md:text-5xl">Every link rewritten</h2>
         <p className="mb-12 max-w-2xl text-text-secondary">
           Attribute-targeted replacement. Text content stays untouched.
         </p>

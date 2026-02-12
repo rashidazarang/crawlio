@@ -13,8 +13,8 @@ export function createParticleData(count: number) {
     positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
     positions[i * 3 + 2] = r * Math.cos(phi)
 
-    sizes[i] = Math.random() * 3 + 1
-    opacities[i] = Math.random() * 0.5 + 0.1
+    sizes[i] = Math.random() * 1.0 + 0.3
+    opacities[i] = Math.random() * 0.08 + 0.01
   }
 
   return { positions, sizes, opacities }

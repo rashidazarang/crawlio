@@ -8,7 +8,7 @@ export default function GlowText({ children, as: Tag = 'h1', className = '' }: G
   return (
     <Tag
       className={`text-text-primary ${className}`}
-      style={{ textShadow: '0 0 40px rgba(165, 243, 252, 0.15), 0 0 80px rgba(165, 243, 252, 0.05)' }}
+      style={{ textShadow: '0 0 40px rgba(165, 243, 252, 0.2), 0 0 80px rgba(165, 243, 252, 0.08)' }}
     >
       {children}
     </Tag>

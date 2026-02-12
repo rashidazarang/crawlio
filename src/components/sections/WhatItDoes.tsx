@@ -36,13 +36,14 @@ const steps = [
 
 export default function WhatItDoes() {
   return (
-    <SectionWrapper id="features">
-      <h2 className="mb-16 text-center text-3xl font-bold md:text-4xl">Three steps to offline</h2>
-      <div className="grid gap-8 md:grid-cols-3">
+    <SectionWrapper id="features" band>
+      <h2 className="mb-16 text-center text-3xl tracking-tight font-bold md:text-5xl">Three steps to offline</h2>
+      <div className="grid gap-6 md:grid-cols-3">
         {steps.map((step, i) => (
           <RevealOnScroll key={step.title} delay={i * 100}>
-            <div className="text-center md:text-left">
-              <div className="mb-4 inline-flex text-accent-cyan">{step.icon}</div>
+            <div className="group relative overflow-hidden rounded-2xl border border-border bg-card p-8 text-center transition-all duration-300 hover:border-border-hover hover:bg-card-hover hover:shadow-[0_0_40px_rgba(165,243,252,0.06)] md:text-left">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-cyan/25 to-transparent" />
+              <div className="mb-4 inline-flex rounded-lg bg-accent-cyan/10 p-2.5 text-accent-cyan">{step.icon}</div>
               <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
               <p className="text-sm leading-relaxed text-text-secondary">{step.description}</p>
             </div>

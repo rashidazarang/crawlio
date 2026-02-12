@@ -6,13 +6,13 @@ interface CodeBlockProps {
 
 export default function CodeBlock({ children, filename }: CodeBlockProps) {
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-card">
+    <div className="overflow-hidden rounded-2xl border border-border bg-card">
       {filename && (
-        <div className="border-b border-white/10 px-4 py-2 text-xs text-text-secondary font-mono">
+        <div className="border-b border-border px-5 py-2.5 text-xs text-text-secondary font-mono">
           {filename}
         </div>
       )}
-      <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
+      <pre className="overflow-x-auto p-5 text-sm leading-relaxed">
         <code className="font-mono text-text-primary/90">{children}</code>
       </pre>
     </div>

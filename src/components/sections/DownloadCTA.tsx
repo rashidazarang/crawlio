@@ -13,7 +13,7 @@ export default function DownloadCTA() {
         macOS 14+. Free and open source.
       </p>
 
-      <Button href="#" className="px-10 py-4 text-base">
+      <Button href="https://github.com/rashidazarang/crawlio/releases" className="px-10 py-4 text-base">
         Download v1.0.0
       </Button>
 

@@ -32,12 +32,12 @@ const parsers = [
 
 export default function Parsers() {
   return (
-    <SectionWrapper id="parsers">
+    <SectionWrapper id="parsers" band>
       <RevealOnScroll>
-        <h2 className="mb-16 text-3xl font-bold md:text-4xl">Five parsers. Every link found.</h2>
+        <h2 className="mb-16 text-3xl tracking-tight font-bold md:text-5xl">Five parsers. Every link found.</h2>
       </RevealOnScroll>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {parsers.map((parser, i) => (
           <RevealOnScroll key={parser.title} delay={i * 80}>
             <FeatureCard title={parser.title} description={parser.description} />
