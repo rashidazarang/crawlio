@@ -12,7 +12,7 @@
   "redirects": [
     {
       "source": "/download",
-      "destination": "https://github.com/user/crawlio/releases/latest",
+      "destination": "https://github.com/rashidazarang/crawlio/releases/latest",
       "permanent": false
     }
   ]

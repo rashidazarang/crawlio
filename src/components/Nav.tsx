@@ -27,7 +27,17 @@ export default function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-[1200px] items-center justify-between px-6 py-4">
-        <a href="#" className="text-lg font-bold tracking-tight text-text-primary">
+        <a href="#" className="flex items-center gap-2 text-lg font-bold tracking-tight text-text-primary">
+          <svg width="24" height="24" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M48 12a28 28 0 1 0 0 40" stroke="#a5f3fc" strokeWidth="4" strokeLinecap="round" fill="none"/>
+            <circle cx="20" cy="24" r="3" fill="#a5f3fc"/>
+            <circle cx="32" cy="16" r="2.5" fill="#a5f3fc" opacity="0.7"/>
+            <circle cx="20" cy="40" r="2.5" fill="#a5f3fc" opacity="0.7"/>
+            <line x1="20" y1="24" x2="32" y2="16" stroke="#a5f3fc" strokeWidth="1.5" opacity="0.4"/>
+            <line x1="20" y1="24" x2="20" y2="40" stroke="#a5f3fc" strokeWidth="1.5" opacity="0.4"/>
+            <line x1="20" y1="40" x2="32" y2="48" stroke="#a5f3fc" strokeWidth="1.5" opacity="0.4"/>
+            <circle cx="26" cy="32" r="4" fill="#a5f3fc" opacity="0.9"/>
+          </svg>
           Crawlio
         </a>
 

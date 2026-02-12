@@ -18,12 +18,16 @@ export const metadata: Metadata = {
   title: 'Crawlio — Download any website. Browse it offline.',
   description:
     'Crawlio is a modern macOS website downloader. Crawl, download, and package entire websites for offline browsing. Built with Swift 6 and SwiftUI.',
+  icons: {
+    icon: '/icon.svg',
+  },
   openGraph: {
     title: 'Crawlio — Download any website. Browse it offline.',
     description:
       'A modern macOS website downloader. Crawl, download, and package entire websites for offline browsing.',
     type: 'website',
     locale: 'en_US',
+    siteName: 'Crawlio',
   },
   twitter: {
     card: 'summary_large_image',
@@ -31,6 +35,7 @@ export const metadata: Metadata = {
     description:
       'A modern macOS website downloader. Crawl, download, and package entire websites for offline browsing.',
   },
+  metadataBase: new URL('https://crawlio.app'),
 }
 
 const jsonLd = {
