@@ -3,6 +3,8 @@
 import { Canvas } from '@react-three/fiber'
 import ParticleField from './ParticleField'
 import SiteGraph from './SiteGraph'
+import VaultArtifact from './VaultArtifact'
+import ExportCollapse from './ExportCollapse'
 
 export default function SceneRoot() {
   return (
@@ -23,6 +25,8 @@ export default function SceneRoot() {
       <pointLight color="#a5f3fc" intensity={0.3} position={[0, 2, 4]} />
       <ParticleField />
       <SiteGraph />
+      <VaultArtifact />
+      <ExportCollapse />
     </Canvas>
   )
 }
