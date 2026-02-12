@@ -111,7 +111,7 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
-          <Button href="#download" className="mt-4">
+          <Button href="#download" className="mt-4" onClick={closeMobile}>
             Download
           </Button>
         </div>
