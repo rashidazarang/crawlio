@@ -2,6 +2,7 @@
 
 import { Canvas } from '@react-three/fiber'
 import ParticleField from './ParticleField'
+import SiteGraph from './SiteGraph'
 
 export default function SceneRoot() {
   return (
@@ -21,6 +22,7 @@ export default function SceneRoot() {
       <directionalLight intensity={0.4} position={[5, 5, 5]} />
       <pointLight color="#a5f3fc" intensity={0.3} position={[0, 2, 4]} />
       <ParticleField />
+      <SiteGraph />
     </Canvas>
   )
 }
