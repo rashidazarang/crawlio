@@ -5,6 +5,8 @@ import ParticleField from './ParticleField'
 import SiteGraph from './SiteGraph'
 import VaultArtifact from './VaultArtifact'
 import ExportCollapse from './ExportCollapse'
+import CameraRig from './CameraRig'
+import ShieldMotif from './ShieldMotif'
 
 export default function SceneRoot() {
   return (
@@ -27,6 +29,8 @@ export default function SceneRoot() {
       <SiteGraph />
       <VaultArtifact />
       <ExportCollapse />
+      <CameraRig />
+      <ShieldMotif />
     </Canvas>
   )
 }
