@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import MobileHero from "@/components/mobile/MobileHero";
+import MobileSocialProof from "@/components/mobile/MobileSocialProof";
 import MobileFeatures from "@/components/mobile/MobileFeatures";
 import MobileUseCases from "@/components/mobile/MobileUseCases";
 import MobileCTA from "@/components/mobile/MobileCTA";
@@ -25,6 +26,7 @@ export default function MobilePage() {
     <>
       <Nav />
       <MobileHero />
+      <MobileSocialProof />
       <MobileFeatures />
       <MobileUseCases />
       <MobileCTA />

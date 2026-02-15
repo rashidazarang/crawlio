@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crawlio — Logo Animation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
+    transition: background-color 0.5s ease;
+  }
+
+  body.dark  { background: #0e0e12; color: #bbb; }
+  body.light { background: #fafafa; color: #555; }
+
+  .stage {
+    width: min(480px, 90vw);
+    aspect-ratio: 324 / 250;
+    position: relative;
+  }
+
+  .stage svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .controls {
+    margin-top: 48px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .controls button {
+    padding: 7px 20px;
+    border: 1px solid rgba(128,128,128,0.2);
+    border-radius: 8px;
+    background: rgba(128,128,128,0.06);
+    color: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+    user-select: none;
+  }
+
+  .controls button:hover {
+    background: rgba(128,128,128,0.15);
+    border-color: rgba(128,128,128,0.35);
+  }
+
+  .controls button.active {
+    background: rgba(134,238,74,0.12);
+    border-color: rgba(134,238,74,0.3);
+  }
+
+  .timing {
+    margin-top: 14px;
+    font-size: 11px;
+    opacity: 0.3;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body class="dark">
+
+<div class="stage">
+  <svg viewBox="0 0 324 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Reveal mask: feathered circle expanding from the green convergence point -->
+      <filter id="mask-feather">
+        <feGaussianBlur stdDeviation="2.5"/>
+      </filter>
+      <mask id="arm-mask">
+        <rect width="324" height="250" fill="black"/>
+        <circle id="mask-circle" cx="161.5" cy="209" r="0" fill="white" filter="url(#mask-feather)"/>
+      </mask>
+
+      <!-- Soft glow for particles -->
+      <filter id="pglow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+
+      <!-- Particle travel paths (arm centerlines: endpoint → green center) -->
+      <path id="path-purple" d="M 161.5 40 L 161.5 209" fill="none"/>
+      <path id="path-red"    d="M 40 85 C 60 125 90 170 130 205 Q 150 215 161.5 209" fill="none"/>
+      <path id="path-blue"   d="M 283 87 C 260 125 225 170 185 205 Q 168 215 161.5 209" fill="none"/>
+    </defs>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- LAYER 1 — Arms + shadow glows (masked reveal)  -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <g mask="url(#arm-mask)">
+      <!-- Red arm (back) -->
+      <path d="M67.5432 55.8641C47.4507 61.2722 32.6201 46.2676 16.9991 61.8886C1.37814 77.5096 10.5513 93.6712 10.9747 112.433L126.726 228.184C139.02 240.478 161.649 237.78 177.27 222.159C192.891 206.538 195.588 183.909 183.294 171.615L67.5432 55.8641Z" fill="#E25636" style="fill:color(display-p3 0.8874 0.3387 0.2110)"/>
+
+      <!-- Blue arm (middle) -->
+      <path d="M310.364 116.84C323.541 103.664 325.88 79.6389 308.354 62.1132C292.78 46.5387 263.711 50.356 250.535 63.5324L132.235 181.832C119.059 195.008 121.003 218.316 136.578 233.89C152.152 249.465 175.459 251.409 188.636 238.232L310.364 116.84Z" fill="#49A7DF" style="fill:color(display-p3 0.2869 0.6545 0.8744)"/>
+
+      <!-- Purple arm (front) -->
+      <path d="M201.527 44.4665C201.527 25.3855 187.14 0 161.18 0C141.632 0 121.527 19.2127 121.527 45.6127V194.092C121.527 206.666 124.387 219.344 131.433 229.758C138.386 240.035 146.76 247.851 161.527 247.851C177.23 247.851 185.084 240.612 192.391 229.162C198.846 219.046 201.527 206.998 201.527 194.998V44.4665Z" fill="#8540CA" style="fill:color(display-p3 0.5215 0.2498 0.7932)"/>
+
+      <!-- Shadow circles (subtle depth behind endpoints) -->
+      <circle cx="42" cy="86.583" r="40" fill="#D2362E" opacity="0.25"/>
+      <circle cx="283.283" cy="87.292" r="40" fill="#4698F7" opacity="0.12"/>
+      <circle cx="161.527" cy="41.674" r="40" fill="#7A24D3" opacity="0.16"/>
+    </g>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- LAYER 2 — Endpoint circles (pop in separately) -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <g id="ep-purple" opacity="0">
+      <circle cx="161.527" cy="40" r="40" fill="#A453F5" style="fill:color(display-p3 0.6431 0.3255 0.9608)"/>
+    </g>
+    <g id="ep-blue" opacity="0">
+      <circle cx="283.283" cy="87.292" r="40" fill="#59C1FF" style="fill:color(display-p3 0.3481 0.7560 1.0000)"/>
+    </g>
+    <g id="ep-red" opacity="0">
+      <circle cx="40" cy="84.893" r="40" fill="#F46655" style="fill:color(display-p3 0.9583 0.4007 0.3344)"/>
+    </g>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- LAYER 3 — Green convergence node               -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <g id="green-node" opacity="0">
+      <circle cx="161.527" cy="208.706" r="40.542" fill="#86EE4A" style="fill:color(display-p3 0.5241 0.9344 0.2911)"/>
+    </g>
+
+    <!-- Flash bloom on green appearance -->
+    <circle id="green-flash" cx="161.527" cy="208.706" r="30" fill="white" opacity="0"/>
+
+    <!-- Ripple rings -->
+    <circle id="ripple-1" cx="161.527" cy="208.706" r="42" fill="none" stroke="#86EE4A" stroke-width="1.5" opacity="0"/>
+    <circle id="ripple-2" cx="161.527" cy="208.706" r="42" fill="none" stroke="#86EE4A" stroke-width="1" opacity="0"/>
+
+    <!-- Particle container (populated by JS) -->
+    <g id="particles"></g>
+  </svg>
+</div>
+
+<div class="controls">
+  <button id="btn-replay">Replay</button>
+  <button id="btn-bg">Toggle BG</button>
+  <button id="btn-speed">0.5&times;</button>
+</div>
+<div class="timing" id="timing">Ready</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ─── Constants ───────────────────────────────────────
+  var GX = 161.527, GY = 208.706;   // green center
+  var MAX_R = 290;                    // mask expansion limit
+  var NS = "http://www.w3.org/2000/svg";
+
+  // ─── Elements ────────────────────────────────────────
+  var maskCircle  = document.getElementById("mask-circle");
+  var greenNode   = document.getElementById("green-node");
+  var greenFlash  = document.getElementById("green-flash");
+  var epPurple    = document.getElementById("ep-purple");
+  var epRed       = document.getElementById("ep-red");
+  var epBlue      = document.getElementById("ep-blue");
+  var ripple1     = document.getElementById("ripple-1");
+  var ripple2     = document.getElementById("ripple-2");
+  var particlesG  = document.getElementById("particles");
+  var timingEl    = document.getElementById("timing");
+
+  // ─── Timeline (ms) ──────────────────────────────────
+  //
+  //   ACT 1 — THE SEED
+  //   A URL is entered. The archive begins to exist.
+  //
+  var FLASH_S = 100, FLASH_D = 350;
+  var GREEN_S = 150, GREEN_D = 500;
+  //
+  //   ACT 2 — THE REACH
+  //   The crawler extends outward across the web.
+  //
+  var ARMS_S  = 500, ARMS_D = 1100;
+  //
+  //   ACT 3 — THE DISCOVERY
+  //   Pages are found. Nodes light up.
+  //
+  var POP_P_S = 1250, POP_D = 380;
+  var POP_R_S = 1400;
+  var POP_B_S = 1550;
+  //
+  //   ACT 4 — THE COLLECTION
+  //   Data flows home along each arm.
+  //
+  var FLOW_P_S = 1900, FLOW_D = 680;
+  var FLOW_R_S = 2000, FLOW_R_D = 720;
+  var FLOW_B_S = 2100, FLOW_B_D = 720;
+  //
+  //   ACT 5 — THE HEARTBEAT
+  //   The archive pulses. It's alive.
+  //
+  var PULSE_S = 2650, PULSE_D = 500;
+  var RIP1_S  = 2700, RIP_D = 900;
+  var RIP2_S  = 2900;
+  //
+  var TOTAL = 3600;
+
+  // ─── Easing ──────────────────────────────────────────
+  function easeOutCubic(t)   { return 1 - Math.pow(1 - t, 3); }
+  function easeOutQuart(t)   { return 1 - Math.pow(1 - t, 4); }
+  function easeInOutQuad(t)  { return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2; }
+  function easeOutBack(t)    { var s = 1.70158; return 1 + (s+1)*Math.pow(t-1,3) + s*Math.pow(t-1,2); }
+
+  // ─── Helpers ─────────────────────────────────────────
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  function progress(elapsed, start, dur) {
+    return clamp01((elapsed - start) / dur);
+  }
+
+  function tx(cx, cy, s) {
+    // scale transform around a center point
+    return "translate(" + cx + "," + cy + ") scale(" + s + ") translate(" + (-cx) + "," + (-cy) + ")";
+  }
+
+  // ─── Particle system ────────────────────────────────
+  var paths = {};     // { purple: { el, len }, ... }
+  var dots  = {};     // { purple: [circle, circle, ...], ... }
+
+  var TRAIL = 4;                         // lead + 3 trail
+  var TRAIL_GAP = 0.055;                 // progress offset between trail dots
+  var DOT_COLORS = { purple: "#A453F5", red: "#F46655", blue: "#59C1FF" };
+  var DOT_RADII  = [4.2, 3.4, 2.6, 1.8];
+  var DOT_ALPHA  = [0.85, 0.45, 0.2, 0.07];
+
+  function initParticles() {
+    ["purple", "red", "blue"].forEach(function (key) {
+      var pathEl = document.getElementById("path-" + key);
+      paths[key] = { el: pathEl, len: pathEl.getTotalLength() };
+
+      var arr = [];
+      for (var i = 0; i < TRAIL; i++) {
+        var c = document.createElementNS(NS, "circle");
+        c.setAttribute("r", DOT_RADII[i]);
+        c.setAttribute("fill", DOT_COLORS[key]);
+        c.setAttribute("opacity", "0");
+        if (i === 0) c.setAttribute("filter", "url(#pglow)");
+        particlesG.appendChild(c);
+        arr.push(c);
+      }
+      dots[key] = arr;
+    });
+  }
+
+  function setParticle(key, prog) {
+    var p = paths[key], d = dots[key];
+    for (var i = 0; i < TRAIL; i++) {
+      var t = prog - i * TRAIL_GAP;
+      if (t <= 0 || prog <= 0) {
+        d[i].setAttribute("opacity", "0");
+        continue;
+      }
+      t = clamp01(t);
+      var pt = p.el.getPointAtLength(t * p.len);
+      d[i].setAttribute("cx", pt.x.toFixed(1));
+      d[i].setAttribute("cy", pt.y.toFixed(1));
+
+      // fade edges
+      var a = DOT_ALPHA[i];
+      if (prog < 0.12) a *= prog / 0.12;
+      if (prog > 0.88) a *= (1 - prog) / 0.12;
+      d[i].setAttribute("opacity", a.toFixed(3));
+    }
+  }
+
+  function hideParticles(key) {
+    dots[key].forEach(function (c) { c.setAttribute("opacity", "0"); });
+  }
+
+  function hideAllParticles() {
+    ["purple", "red", "blue"].forEach(hideParticles);
+  }
+
+  // ─── State ───────────────────────────────────────────
+  var speed    = 1;
+  var t0       = 0;
+  var mainRaf  = null;
+  var ambRaf   = null;
+  var running  = false;
+
+  // ─── Reset ───────────────────────────────────────────
+  function reset() {
+    if (mainRaf)  { cancelAnimationFrame(mainRaf);  mainRaf = null; }
+    if (ambRaf)   { cancelAnimationFrame(ambRaf);   ambRaf  = null; }
+    running = false;
+
+    maskCircle.setAttribute("r", "0");
+
+    greenNode.setAttribute("opacity", "0");
+    greenNode.setAttribute("transform", "");
+    greenFlash.setAttribute("opacity", "0");
+    greenFlash.setAttribute("transform", "");
+
+    epPurple.setAttribute("opacity", "0"); epPurple.setAttribute("transform", "");
+    epRed.setAttribute("opacity",    "0"); epRed.setAttribute("transform", "");
+    epBlue.setAttribute("opacity",   "0"); epBlue.setAttribute("transform", "");
+
+    ripple1.setAttribute("opacity", "0"); ripple1.setAttribute("r", "42");
+    ripple2.setAttribute("opacity", "0"); ripple2.setAttribute("r", "42");
+
+    hideAllParticles();
+    timingEl.textContent = "Ready";
+  }
+
+  // ─── Main animation tick ─────────────────────────────
+  function tick(now) {
+    var e = (now - t0) * speed;   // elapsed, scaled
+    timingEl.textContent = (e / 1000).toFixed(2) + "s";
+
+    // ── ACT 1: THE SEED ──
+
+    // Green flash / bloom
+    var fp = progress(e, FLASH_S, FLASH_D);
+    if (fp > 0 && fp < 1) {
+      var fo = fp < 0.25 ? fp / 0.25 * 0.55 : 0.55 * (1 - (fp - 0.25) / 0.75);
+      var fs = 0.6 + fp * 1.8;
+      greenFlash.setAttribute("opacity", fo.toFixed(3));
+      greenFlash.setAttribute("transform", tx(GX, GY, fs));
+    } else if (fp >= 1) {
+      greenFlash.setAttribute("opacity", "0");
+    }
+
+    // Green circle appears (scale 0.4→1.0 easeOutBack, opacity quick fade-in)
+    var gp = progress(e, GREEN_S, GREEN_D);
+    if (gp > 0 && gp < 1) {
+      var gs = 0.4 + 0.6 * easeOutBack(gp);
+      var go = clamp01(gp * 3);
+      greenNode.setAttribute("opacity", go.toFixed(3));
+      greenNode.setAttribute("transform", tx(GX, GY, gs));
+    } else if (gp >= 1) {
+      greenNode.setAttribute("opacity", "1");
+      greenNode.setAttribute("transform", "");
+    }
+
+    // ── ACT 2: THE REACH ──
+
+    // Mask expansion (arms grow outward from green center)
+    var ap = progress(e, ARMS_S, ARMS_D);
+    if (ap > 0) {
+      maskCircle.setAttribute("r", (easeOutCubic(clamp01(ap)) * MAX_R).toFixed(1));
+    }
+
+    // ── ACT 3: THE DISCOVERY ──
+
+    // Endpoint circles pop in with spring overshoot
+    var pops = [
+      { el: epPurple, s: POP_P_S, cx: 161.527, cy: 40 },
+      { el: epRed,    s: POP_R_S, cx: 40,      cy: 84.893 },
+      { el: epBlue,   s: POP_B_S, cx: 283.283, cy: 87.292 },
+    ];
+    for (var pi = 0; pi < pops.length; pi++) {
+      var pop = pops[pi];
+      var pp = progress(e, pop.s, POP_D);
+      if (pp > 0 && pp < 1) {
+        var ps = easeOutBack(pp);
+        pop.el.setAttribute("opacity", clamp01(pp * 3.5).toFixed(3));
+        pop.el.setAttribute("transform", tx(pop.cx, pop.cy, ps));
+      } else if (pp >= 1) {
+        pop.el.setAttribute("opacity", "1");
+        pop.el.setAttribute("transform", "");
+      }
+    }
+
+    // ── ACT 4: THE COLLECTION ──
+
+    // Data particles flow along each arm → green center
+    var flows = [
+      { key: "purple", s: FLOW_P_S, d: FLOW_D },
+      { key: "red",    s: FLOW_R_S, d: FLOW_R_D },
+      { key: "blue",   s: FLOW_B_S, d: FLOW_B_D },
+    ];
+    for (var fi = 0; fi < flows.length; fi++) {
+      var f = flows[fi];
+      var flp = progress(e, f.s, f.d);
+      if (flp > 0 && flp < 1) {
+        setParticle(f.key, easeInOutQuad(flp));
+      } else if (flp >= 1) {
+        hideParticles(f.key);
+      }
+    }
+
+    // ── ACT 5: THE HEARTBEAT ──
+
+    // Green pulse (single satisfied thump)
+    var pup = progress(e, PULSE_S, PULSE_D);
+    if (pup > 0 && pup < 1) {
+      var puScale = 1 + 0.09 * Math.sin(pup * Math.PI);
+      greenNode.setAttribute("transform", tx(GX, GY, puScale));
+    } else if (pup >= 1 && e < TOTAL) {
+      greenNode.setAttribute("transform", "");
+    }
+
+    // Ripple rings
+    animateRipple(ripple1, e, RIP1_S, RIP_D);
+    animateRipple(ripple2, e, RIP2_S, RIP_D);
+
+    // ── Continue or hand off to ambient ──
+    if (e < TOTAL) {
+      mainRaf = requestAnimationFrame(tick);
+    } else {
+      timingEl.textContent = (TOTAL / 1000).toFixed(2) + "s";
+      mainRaf = null;
+      greenNode.setAttribute("transform", "");
+      startAmbient();
+    }
+  }
+
+  function animateRipple(el, e, start, dur) {
+    var rp = progress(e, start, dur);
+    if (rp > 0 && rp < 1) {
+      var re = easeOutQuart(rp);
+      el.setAttribute("r", (42 + re * 90).toFixed(1));
+      el.setAttribute("opacity", ((1 - re) * 0.45).toFixed(3));
+      el.setAttribute("stroke-width", ((1 - re * 0.7) * 1.5).toFixed(2));
+    } else if (rp >= 1) {
+      el.setAttribute("opacity", "0");
+    }
+  }
+
+  // ─── Ambient breathing ───────────────────────────────
+  function startAmbient() {
+    var a0 = performance.now();
+    var lastParticle = 0;
+
+    function ambTick(now) {
+      var t = (now - a0) / 1000;   // seconds since ambient start
+
+      // Gentle green breathing (barely perceptible)
+      var breath = 1 + 0.012 * Math.sin(t * Math.PI * 0.5);
+      greenNode.setAttribute("transform", tx(GX, GY, breath));
+
+      // Occasional ambient particle (every ~7s, random arm)
+      if (t - lastParticle > 7) {
+        lastParticle = t;
+        var arms = ["purple", "red", "blue"];
+        fireAmbientParticle(arms[Math.floor(Math.random() * 3)]);
+      }
+
+      ambRaf = requestAnimationFrame(ambTick);
+    }
+
+    ambRaf = requestAnimationFrame(ambTick);
+  }
+
+  function fireAmbientParticle(key) {
+    var start = performance.now();
+    var dur = 1400;
+
+    function ptick(now) {
+      var p = clamp01((now - start) / dur);
+      if (p >= 1) { hideParticles(key); return; }
+
+      // Slower, gentler easing for ambient flow
+      setParticle(key, easeInOutQuad(p));
+      requestAnimationFrame(ptick);
+    }
+    requestAnimationFrame(ptick);
+  }
+
+  // ─── Play ────────────────────────────────────────────
+  function play() {
+    reset();
+    t0 = performance.now();
+    running = true;
+    mainRaf = requestAnimationFrame(tick);
+  }
+
+  // ─── Pause on hidden tab ─────────────────────────────
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      if (mainRaf) { cancelAnimationFrame(mainRaf); mainRaf = null; }
+      if (ambRaf)  { cancelAnimationFrame(ambRaf);  ambRaf  = null; }
+    }
+  });
+
+  // ─── Controls ────────────────────────────────────────
+  document.getElementById("btn-replay").addEventListener("click", play);
+
+  document.getElementById("btn-bg").addEventListener("click", function () {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  });
+
+  var speedBtn = document.getElementById("btn-speed");
+  speedBtn.addEventListener("click", function () {
+    if (speed === 1) {
+      speed = 0.35;
+      speedBtn.textContent = "1\u00d7";
+      speedBtn.classList.add("active");
+    } else {
+      speed = 1;
+      speedBtn.textContent = "0.5\u00d7";
+      speedBtn.classList.remove("active");
+    }
+  });
+
+  // ─── Init & go ───────────────────────────────────────
+  initParticles();
+  play();
+
+})();
+</script>
+</body>
+</html>

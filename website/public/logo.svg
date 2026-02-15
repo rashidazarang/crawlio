@@ -1,0 +1,56 @@
+<svg width="324" height="250" viewBox="0 0 324 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    Crawlio Logo — Professional Vector
+
+    Geometry:
+      Three capsule arms (80 wide, rx 40) converging at the green node (161.527, 208.706).
+      Red arm   -44.46° from vertical   connects (40, 84.893) → green
+      Purple arm  0° (vertical)          connects (161.527, 40) → green
+      Blue arm  +45.08° from vertical    connects (283.283, 87.292) → green
+
+    Nodes:
+      Red    cx=40       cy=84.893   r=40      #F46655
+      Purple cx=161.527  cy=40       r=40      #A453F5
+      Blue   cx=283.283  cy=87.292   r=40      #59C1FF
+      Green  cx=161.527  cy=208.706  r=40.542  #86EE4A
+  -->
+
+  <!-- ═══ Arms (back → front) ═══ -->
+
+  <!-- Red arm — rotated -44.46° -->
+  <rect x="-40" y="-126.744" width="80" height="253.488" rx="40"
+        transform="translate(100.764 146.799) rotate(-44.46)"
+        fill="#E25636" style="fill:color(display-p3 0.8874 0.3387 0.2110)"/>
+
+  <!-- Purple arm — vertical -->
+  <rect x="121.527" y="0" width="80" height="248.706" rx="40"
+        fill="#8540CA" style="fill:color(display-p3 0.5215 0.2498 0.7932)"/>
+
+  <!-- Blue arm — rotated +45.08° -->
+  <rect x="-40" y="-125.977" width="80" height="251.953" rx="40"
+        transform="translate(222.405 147.999) rotate(45.08)"
+        fill="#49A7DF" style="fill:color(display-p3 0.2869 0.6545 0.8744)"/>
+
+  <!-- ═══ Shadow circles ═══ -->
+
+  <circle cx="42" cy="86.583" r="40" opacity="0.25"
+          fill="#D2362E" style="fill:color(display-p3 0.8235 0.2118 0.1804)"/>
+  <circle cx="283.283" cy="87.292" r="40" opacity="0.12"
+          fill="#4698F7" style="fill:color(display-p3 0.2745 0.5961 0.9686)"/>
+  <circle cx="161.527" cy="41.674" r="40" opacity="0.16"
+          fill="#7A24D3" style="fill:color(display-p3 0.4784 0.1412 0.8275)"/>
+
+  <!-- ═══ Green convergence node ═══ -->
+
+  <circle cx="161.527" cy="208.706" r="40.542"
+          fill="#86EE4A" style="fill:color(display-p3 0.5241 0.9344 0.2911)"/>
+
+  <!-- ═══ Endpoint circles ═══ -->
+
+  <circle cx="161.527" cy="40" r="40"
+          fill="#A453F5" style="fill:color(display-p3 0.6431 0.3255 0.9608)"/>
+  <circle cx="283.283" cy="87.292" r="40"
+          fill="#59C1FF" style="fill:color(display-p3 0.3481 0.7560 1.0000)"/>
+  <circle cx="40" cy="84.893" r="40"
+          fill="#F46655" style="fill:color(display-p3 0.9583 0.4007 0.3344)"/>
+</svg>

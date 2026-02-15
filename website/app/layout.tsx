@@ -43,6 +43,10 @@ export const metadata: Metadata = {
     description:
       "Download entire websites into local files. Browse offline or hand them to your AI. Native macOS. One-time purchase.",
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

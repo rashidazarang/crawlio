@@ -3,6 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+const floatingBadges = [
+  { label: "Liquid Glass", x: "-60%", y: "20%", delay: 0 },
+  { label: "iOS 26", x: "55%", y: "15%", delay: 0.3 },
+  { label: "Offline Ready", x: "-50%", y: "65%", delay: 0.6 },
+];
+
 export default function MobileHero() {
   return (
     <section className="mesh-gradient grain min-h-screen flex items-center justify-center pt-16">
@@ -53,8 +59,39 @@ export default function MobileHero() {
           initial={{ opacity: 0, y: 40, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.65 }}
-          className="mt-16 md:mt-20 w-full max-w-sm"
+          className="mt-16 md:mt-20 w-full max-w-sm relative"
         >
+          {/* Floating badges */}
+          {floatingBadges.map((badge) => (
+            <motion.span
+              key={badge.label}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: [0, -8, 0],
+              }}
+              transition={{
+                opacity: { duration: 0.4, delay: 0.9 + badge.delay },
+                scale: { duration: 0.4, delay: 0.9 + badge.delay },
+                y: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.2 + badge.delay,
+                },
+              }}
+              className="hidden md:flex absolute glass-card px-3 py-1.5 text-xs font-medium text-[var(--text-primary)] z-20 whitespace-nowrap"
+              style={{
+                left: badge.x,
+                top: badge.y,
+                borderRadius: "9999px",
+              }}
+            >
+              {badge.label}
+            </motion.span>
+          ))}
+
           <div className="glass-card p-2 md:p-3 relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-[var(--accent-purple)]/10 via-[var(--accent-blue)]/10 to-[var(--accent-red)]/10 rounded-3xl blur-2xl -z-10" />
             <Image

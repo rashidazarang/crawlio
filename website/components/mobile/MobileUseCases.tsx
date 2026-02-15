@@ -12,6 +12,16 @@ const useCases = [
   "Share with team",
   "AI-ready downloads",
   "Field research",
+  "Download documentation",
+  "Capture blogs",
+  "Save portfolios",
+  "Mirror landing pages",
+  "Archive forums",
+  "Backup wikis",
+  "Save news articles",
+  "Download tutorials",
+  "Preserve galleries",
+  "Cache reference sites",
 ];
 
 export default function MobileUseCases() {
