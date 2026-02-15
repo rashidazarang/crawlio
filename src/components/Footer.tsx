@@ -17,12 +17,20 @@ export default function Footer() {
         <div className="text-xs text-text-secondary">
           Built with Swift 6 + SwiftUI
         </div>
-        <a
-          href="https://github.com/rashidazarang/crawlio"
-          className="text-xs text-text-secondary transition-colors hover:text-text-primary"
-        >
-          GitHub
-        </a>
+        <div className="flex items-center gap-6">
+          <a
+            href="/mobile"
+            className="text-xs text-text-secondary transition-colors hover:text-text-primary"
+          >
+            Mobile App
+          </a>
+          <a
+            href="https://github.com/rashidazarang/crawlio"
+            className="text-xs text-text-secondary transition-colors hover:text-text-primary"
+          >
+            GitHub
+          </a>
+        </div>
       </div>
     </footer>
   )

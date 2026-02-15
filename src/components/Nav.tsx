@@ -3,8 +3,9 @@
 import { useEffect, useState, useCallback } from 'react'
 import Button from './ui/Button'
 
-const links = [
+const links: { label: string; href: string; badge?: string }[] = [
   { label: 'Features', href: '#features' },
+  { label: 'Mobile', href: '/mobile', badge: 'New' },
   { label: 'Engine', href: '#engine' },
   { label: 'Parsers', href: '#parsers' },
   { label: 'Export', href: '#export' },
@@ -60,9 +61,14 @@ export default function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                className="flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
               >
                 {link.label}
+                {link.badge && (
+                  <span className="rounded-full bg-accent-cyan/20 px-1.5 py-0.5 text-[10px] font-semibold leading-none text-accent-cyan">
+                    {link.badge}
+                  </span>
+                )}
               </a>
             ))}
           </div>
@@ -106,9 +112,14 @@ export default function Nav() {
               key={link.href}
               href={link.href}
               onClick={closeMobile}
-              className="text-2xl font-semibold text-text-primary transition-colors hover:text-accent-cyan"
+              className="flex items-center gap-2 text-2xl font-semibold text-text-primary transition-colors hover:text-accent-cyan"
             >
               {link.label}
+              {link.badge && (
+                <span className="rounded-full bg-accent-cyan/20 px-2 py-0.5 text-xs font-semibold text-accent-cyan">
+                  {link.badge}
+                </span>
+              )}
             </a>
           ))}
           <Button href="#download" className="mt-4" onClick={closeMobile}>
